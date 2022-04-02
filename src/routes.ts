@@ -1,14 +1,13 @@
-import { getUserProfile } from "./controllers/getUserProfile";
-import { validateAdm } from "./middlewares/validateAdm";
-import { validateToken } from "./middlewares/validateToken";
-import { getUsers } from "./controllers/getUsers";
-import { loginUser } from "./shapes/loginUser";
-import { registerUser } from "./shapes/registerUser";
-import { validateShape } from "./middlewares/validateShape";
 import { Router } from "express";
-import { loginUsers, postUsers } from "./controllers";
-import { patchUser } from "./controllers/patchUser";
-import { deleteUsers } from "./controllers/deleteUsers";
+import {
+  deleteUsers,
+  getUsersProfile,
+  loginUsers,
+  patchUsers,
+  postUsers,
+} from "./controllers";
+import { validateAdm, validateShape, validateToken } from "./middlewares";
+import { loginUser, registerUser } from "./shapes";
 
 const userRouter = Router();
 
@@ -16,11 +15,11 @@ userRouter.post("/users", validateShape(registerUser), postUsers);
 
 userRouter.post("/login", validateShape(loginUser), loginUsers);
 
-userRouter.get("/users", validateToken, validateAdm, getUsers);
+userRouter.get("/users", validateToken, validateAdm, getUsersProfile);
 
-userRouter.get("/users/profile", validateToken, getUserProfile);
+userRouter.get("/users/profile", validateToken, getUsersProfile);
 
-userRouter.patch("/users/:uuid", validateToken, validateAdm, patchUser);
+userRouter.patch("/users/:uuid", validateToken, validateAdm, patchUsers);
 
 userRouter.delete("/users/:uuid", validateToken, validateAdm, deleteUsers);
 

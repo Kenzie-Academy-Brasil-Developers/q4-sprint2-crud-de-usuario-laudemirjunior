@@ -1,9 +1,8 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { AnySchema } from "yup";
 
 export const validateShape =
-  (shape: AnySchema) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  (shape: AnySchema) => async (req: any, res: Response, next: NextFunction) => {
     try {
       const validated = await shape.validate(req.body, {
         abortEarly: false,

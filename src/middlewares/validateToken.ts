@@ -2,11 +2,7 @@ import { config } from "./../configs/index";
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-export const validateToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const validateToken = (req: any, res: Response, next: NextFunction) => {
   if (!req.headers.authorization) {
     return res.status(401).json({ message: "Missing authorization headers" });
   }

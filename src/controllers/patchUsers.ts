@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { IUser, UserRepository } from "../repositories";
 import { UpdateResult } from "typeorm";
 
-export const patchUser = async (req: Request, res: Response) => {
+export const patchUsers = async (req: Request, res: Response) => {
   const { uuid } = req.params;
   const { body } = req;
   if (req.body.password) {
